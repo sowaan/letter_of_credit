@@ -1,0 +1,390 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-05-09 10:55:41.821313",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "customer",
+  "customer_name",
+  "column_break_feoc",
+  "date",
+  "payment_due_date",
+  "column_break_eigc",
+  "company",
+  "default_currency",
+  "section_break_tszo",
+  "currency_",
+  "column_break_fois",
+  "exchange_rate",
+  "section_break_gjmy",
+  "items",
+  "section_break_saty",
+  "total_quantity",
+  "column_break_opwm",
+  "column_break_fwbk",
+  "total_amount",
+  "amount_in_foreign_currency",
+  "section_break_pbgp",
+  "sales_taxes_and_charges_template",
+  "column_break_pzgi",
+  "section_break_twyj",
+  "sales_taxes_and_charges",
+  "section_break_zlvb",
+  "column_break_lvca",
+  "total_taxes_and_charges_in_foreign_currency",
+  "grand_total_in_for_currency",
+  "column_break_uplm",
+  "total_taxes_and_charges",
+  "grand_total",
+  "in_words",
+  "section_break_3uay",
+  "amended_from",
+  "delivery_details_tab",
+  "delivery_details_section",
+  "delivery_note",
+  "delivery_date",
+  "project",
+  "column_break_pmst",
+  "lc_number",
+  "date_of_issue",
+  "lc_amount",
+  "lc_issuing_bank",
+  "bank_account",
+  "section_break_yxjl",
+  "delivery_terms",
+  "column_break_uusz",
+  "payment_terms",
+  "section_break_phwb",
+  "description_of_goods_or_services"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_3uay",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Commercial Invoice",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_feoc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "options": "Today()",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Payment Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_gjmy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Commercial Invoice Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_eigc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_saty",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_quantity",
+   "fieldtype": "Float",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_opwm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fwbk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "ACC-CINV-.YYYY.-\nACC-CINV-RET-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "section_break_tszo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_fois",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval: doc.currency_ != doc.default_currency ;",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate",
+   "mandatory_depends_on": "eval: doc.currency != doc.default_currency ;"
+  },
+  {
+   "fetch_from": "comapny.default_currency",
+   "fieldname": "default_currency",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Default Currency",
+   "options": "Currency"
+  },
+  {
+   "default": "0",
+   "fieldname": "amount_in_foreign_currency",
+   "fieldtype": "Currency",
+   "label": "Total Amount in Foreign Currency",
+   "options": "currency_",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_pbgp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_taxes_and_charges_template",
+   "fieldtype": "Link",
+   "label": "Sales Taxes and Charges Template",
+   "options": "Sales Taxes and Charges Template"
+  },
+  {
+   "fieldname": "column_break_pzgi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_twyj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_taxes_and_charges",
+   "fieldtype": "Table",
+   "label": "Sales Taxes and Charges",
+   "options": "Sales Taxes and Charges"
+  },
+  {
+   "fieldname": "currency_",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "section_break_zlvb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_lvca",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_uplm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_taxes_and_charges",
+   "fieldtype": "Currency",
+   "label": "Total Taxes and Charges",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total_in_for_currency",
+   "fieldtype": "Currency",
+   "label": "Grand Total In For Currency",
+   "options": "currency_",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_taxes_and_charges_in_foreign_currency",
+   "fieldtype": "Currency",
+   "label": "Total Taxes and Charges In Foreign Currency",
+   "options": "currency_",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "delivery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Details"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "label": "Delivery Note",
+   "options": "Delivery Note"
+  },
+  {
+   "fieldname": "column_break_pmst",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "label": "Delivery Date"
+  },
+  {
+   "fieldname": "lc_number",
+   "fieldtype": "Data",
+   "label": "LC Number"
+  },
+  {
+   "fieldname": "date_of_issue",
+   "fieldtype": "Date",
+   "label": "Date of Issue"
+  },
+  {
+   "default": "0",
+   "fieldname": "lc_amount",
+   "fieldtype": "Currency",
+   "label": "LC Amount"
+  },
+  {
+   "fieldname": "lc_issuing_bank",
+   "fieldtype": "Link",
+   "label": "LC Issuing Bank",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "section_break_yxjl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "delivery_terms",
+   "fieldtype": "Small Text",
+   "label": "Delivery Terms"
+  },
+  {
+   "fieldname": "column_break_uusz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Small Text",
+   "label": "Payment Terms"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "description_of_goods_or_services",
+   "fieldtype": "Long Text",
+   "label": "Description of Goods or Services"
+  },
+  {
+   "fieldname": "in_words",
+   "fieldtype": "Small Text",
+   "label": "In Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "bank_account",
+   "fieldtype": "Link",
+   "label": "Bank Account",
+   "options": "Bank Account"
+  },
+  {
+   "fieldname": "delivery_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Delivery Details"
+  },
+  {
+   "fieldname": "section_break_phwb",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-05-14 11:51:15.171350",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "Commercial Invoice",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

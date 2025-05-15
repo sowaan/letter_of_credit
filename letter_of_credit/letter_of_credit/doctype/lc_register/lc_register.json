@@ -1,0 +1,342 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:lc_number",
+ "creation": "2025-05-08 18:44:02.345501",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "lc_number",
+  "lc_group",
+  "column_break_tbws",
+  "company",
+  "lc_type",
+  "buyer__applicant_section",
+  "customer_name",
+  "address",
+  "country",
+  "column_break_dqxy",
+  "place_of_supply",
+  "trn",
+  "po_box",
+  "supplier_details_section",
+  "supplier",
+  "supplier_address",
+  "supplier_country",
+  "column_break_kxni",
+  "supplier_place_of_supply",
+  "supplier_trn",
+  "supplier_po_box",
+  "lc_details_section",
+  "lc_amount",
+  "lc_issuing_bank",
+  "bank_lc_no",
+  "column_break_faxb",
+  "lc_reference",
+  "lc_date_of_issue",
+  "lc_date_ofexpiry",
+  "commercial_invoices_section",
+  "commercial_invoices",
+  "total_commercial_invoices_amount",
+  "section_break_gdtd",
+  "description_of_goods_and_services",
+  "pi_invoice_no",
+  "column_break_kqjo",
+  "proforma_invoice",
+  "pi_invoice_date",
+  "delivery_details_section",
+  "delivery_details",
+  "terms_and_conditions_for_material_delivery_section",
+  "terms_and_conditions_for_material_delivery",
+  "lc_amendment_details_section",
+  "lc_amendment_details",
+  "section_break_zag3",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_zag3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "LC Register",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "Export",
+   "fieldname": "lc_group",
+   "fieldtype": "Select",
+   "label": "LC Group",
+   "options": "Import\nExport"
+  },
+  {
+   "fieldname": "column_break_tbws",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lc_type",
+   "fieldtype": "Select",
+   "label": "LC Type",
+   "options": "Sight\nDeffered"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval: doc.lc_group == 'Export' ;",
+   "fieldname": "buyer__applicant_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "depends_on": "eval: doc.lc_group == 'Export' ;",
+   "fieldname": "customer_name",
+   "fieldtype": "Link",
+   "label": "Customer Name",
+   "options": "Customer"
+  },
+  {
+   "depends_on": "eval: doc.lc_group == 'Export' ;",
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "column_break_dqxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer_name.territory",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply"
+  },
+  {
+   "fetch_from": "customer_name.tax_id",
+   "fieldname": "trn",
+   "fieldtype": "Data",
+   "label": "TRN"
+  },
+  {
+   "fieldname": "po_box",
+   "fieldtype": "Data",
+   "label": "PO Box"
+  },
+  {
+   "fieldname": "lc_details_section",
+   "fieldtype": "Section Break",
+   "label": "LC Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "lc_amount",
+   "fieldtype": "Float",
+   "label": "LC Amount"
+  },
+  {
+   "fieldname": "column_break_faxb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lc_issuing_bank",
+   "fieldtype": "Link",
+   "label": "LC Issuing Bank",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "bank_lc_no",
+   "fieldtype": "Data",
+   "label": "Bank LC No"
+  },
+  {
+   "fieldname": "lc_reference",
+   "fieldtype": "Data",
+   "label": "LC Reference",
+   "unique": 1
+  },
+  {
+   "fieldname": "lc_date_of_issue",
+   "fieldtype": "Date",
+   "label": "LC Date Of Issue"
+  },
+  {
+   "fieldname": "lc_date_ofexpiry",
+   "fieldtype": "Date",
+   "label": "LC Date Of Expiry"
+  },
+  {
+   "fieldname": "commercial_invoices_section",
+   "fieldtype": "Section Break",
+   "label": "Commercial Invoices"
+  },
+  {
+   "fieldname": "commercial_invoices",
+   "fieldtype": "Table",
+   "label": "Commercial Invoices",
+   "options": "Commercial Invoices"
+  },
+  {
+   "fieldname": "section_break_gdtd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description_of_goods_and_services",
+   "fieldtype": "Data",
+   "label": "Description of Goods And Services"
+  },
+  {
+   "fieldname": "column_break_kqjo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "proforma_invoice",
+   "fieldtype": "Data",
+   "label": "Performance Invoice"
+  },
+  {
+   "fieldname": "pi_invoice_no",
+   "fieldtype": "Data",
+   "label": "PI Invoice No"
+  },
+  {
+   "fieldname": "pi_invoice_date",
+   "fieldtype": "Date",
+   "label": "PI Invoice Date"
+  },
+  {
+   "fieldname": "delivery_details",
+   "fieldtype": "Table",
+   "label": "Delivery Details",
+   "options": "Delivery Details"
+  },
+  {
+   "fieldname": "terms_and_conditions_for_material_delivery",
+   "fieldtype": "Text",
+   "label": "Terms and Conditions for Material Delivery"
+  },
+  {
+   "fieldname": "terms_and_conditions_for_material_delivery_section",
+   "fieldtype": "Section Break",
+   "label": "Terms and Conditions for Material Delivery"
+  },
+  {
+   "fieldname": "lc_amendment_details",
+   "fieldtype": "Table",
+   "label": "LC Amendment Details",
+   "options": "LC Amendment Details"
+  },
+  {
+   "fieldname": "lc_amendment_details_section",
+   "fieldtype": "Section Break",
+   "label": "LC Amendment Details"
+  },
+  {
+   "fieldname": "delivery_details_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Details"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval: doc.lc_group == 'Import' ;",
+   "fieldname": "supplier_details_section",
+   "fieldtype": "Section Break",
+   "label": "Supplier Details"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_kxni",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier_address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "fetch_from": "supplier.country",
+   "fieldname": "supplier_country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "supplier_place_of_supply",
+   "fieldtype": "Data",
+   "label": "Place of Supply"
+  },
+  {
+   "fetch_from": "supplier.tax_id",
+   "fieldname": "supplier_trn",
+   "fieldtype": "Data",
+   "label": "TRN"
+  },
+  {
+   "fieldname": "supplier_po_box",
+   "fieldtype": "Data",
+   "label": "PO Box"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_commercial_invoices_amount",
+   "fieldtype": "Currency",
+   "label": "Total Commercial Invoices Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lc_number",
+   "fieldtype": "Data",
+   "label": "LC Number",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-05-15 11:11:12.135290",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "LC Register",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

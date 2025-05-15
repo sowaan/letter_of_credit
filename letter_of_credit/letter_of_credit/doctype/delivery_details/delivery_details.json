@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-09 10:37:14.525220",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "delivery_note_number",
+  "column_break_lndo",
+  "delivery_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "delivery_note_number",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Delivery Note Number",
+   "options": "Delivery Note"
+  },
+  {
+   "fieldname": "column_break_lndo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "delivery_note_number.posting_date",
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Delivery Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-09 10:40:01.104490",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "Delivery Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

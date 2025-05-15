@@ -1,0 +1,43 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-09 10:47:54.612305",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "lc_amendment_amount",
+  "column_break_hkmq",
+  "date_of_amendment"
+ ],
+ "fields": [
+  {
+   "fieldname": "lc_amendment_amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "LC Amendment Amount"
+  },
+  {
+   "fieldname": "column_break_hkmq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_amendment",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Amendment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-09 10:48:47.166426",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "LC Amendment Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
