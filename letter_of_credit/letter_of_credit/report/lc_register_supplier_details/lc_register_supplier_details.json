@@ -1,0 +1,37 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2025-05-19 14:11:02.723504",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "lc_register",
+   "fieldtype": "Link",
+   "label": "LC Number",
+   "mandatory": 0,
+   "options": "LC Register",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2025-05-19 14:14:04.866276",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "LC Register Supplier Details",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "LC Register",
+ "report_name": "LC Register Supplier Details",
+ "report_script": "\n\n\n\n\n\nvalues = {\n        'lc_register' : filters.get('lc_register') ,\n}\n\n\nresult = frappe.db.sql(\"\"\"\n    SELECT\n        lc.name as name,\n        lc.lc_reference as lc_reference,\n        so.name as sales_order ,\n        so.po_no as po_no ,\n        lc.customer_name as customer,\n        lc.lc_date_of_issue as lc_date_of_issue,\n        lc.lc_date_ofexpiry as lc_date_ofexpiry,\n        lc.lc_amount as lc_amount,\n        lc.total_commercial_invoices_amount as total_commercial_invoices_amount,\n        IFNULL(SUM(pe.paid_amount), 0) as settlement,\n        (lc.lc_amount - lc.total_commercial_invoices_amount - IFNULL(SUM(pe.paid_amount), 0)) as available_balance\n    FROM `tabLC Register` lc\n    LEFT JOIN `tabPayment Entry` pe \n        ON pe.lc_register = lc.name \n        AND pe.party = lc.customer_name \n        AND pe.docstatus = 1\n    LEFT JOIN `tabSales Order` so ON so.lc_register = lc.name AND so.customer = lc.customer_name AND so.docstatus = 1\n    WHERE lc.docstatus = 1\n    AND (lc.name = %(lc_register)s OR %(lc_register)s IS NULL)\n    GROUP BY lc.name\n\"\"\", values=values, as_dict=True)\n\n\nmax_amendments = 0\nfor row in result:\n    amendments = frappe.get_all(\"LC Amendment Details\", \n        filters={\"parent\": row[\"name\"]},\n        fields=[\"lc_amendment_amount\"],\n        order_by=\"idx\")\n    \n    for i, amend in enumerate(amendments):\n        row[f\"amendment_{i+1}\"] = amend[\"lc_amendment_amount\"]\n    \n    max_amendments = max(max_amendments, len(amendments))\n\n\ncolumns = [\n    { 'label':'LC Number', 'fieldname':'name', 'fieldtype':'Link', 'options':'LC Register', 'width':200 },\n    { 'label':'LC Reference', 'fieldname':'lc_reference', 'fieldtype':'Data', 'width':150 },\n    \n    { 'label':'SOD NO', 'fieldname':'sales_order', 'fieldtype':'Link', 'options':'Sales Order', 'width':200 },\n    { 'label':'LPO NO / CONTRACT', 'fieldname':'po_no', 'fieldtype':'Data', 'width':150 },\n    \n    { 'label':'Benificiary', 'fieldname':'customer', 'fieldtype':'Link', 'options':'Customer', 'width':150 },\n    { 'label':'Date of Issue', 'fieldname':'lc_date_of_issue', 'fieldtype':'Date', 'width':120 },\n    { 'label':'Date of Expiry', 'fieldname':'lc_date_ofexpiry', 'fieldtype':'Date', 'width':120 },\n    { 'label':'LC Amount', 'fieldname':'lc_amount', 'fieldtype':'Currency', 'width':120 },\n]\n\n\nfor i in range(max_amendments):\n    columns.append({\n        'label': f'Amendment {i+1}',\n        'fieldname': f'amendment_{i+1}',\n        'fieldtype': 'Currency',\n        'width': 170\n    })\n    \n    \ncolumns.append(\n        { 'label':'Total Invoices', 'fieldname':'total_commercial_invoices_amount', 'fieldtype':'Currency', 'width':150 },\n)    \ncolumns.append(\n        { 'label':'Settlement', 'fieldname':'settlement', 'fieldtype':'Currency', 'width':150 },\n)    \ncolumns.append(\n        { 'label':'Available Balance', 'fieldname':'available_balance', 'fieldtype':'Currency', 'width':150 },\n)    \n\n\ndata = columns, result\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

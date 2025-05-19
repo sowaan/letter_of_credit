@@ -1,0 +1,37 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2025-05-19 14:34:25.529035",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "mandatory": 0,
+   "options": "Supplier",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2025-05-19 14:56:58.426537",
+ "modified_by": "Administrator",
+ "module": "Letter of Credit",
+ "name": "LC Summary With Suppliers",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "LC Register",
+ "report_name": "LC Summary With Suppliers",
+ "report_script": "\n\n\n\n\n\n\n\n\n\n\n\n\nvalues = {\n    'customer' : filters.get('customer') ,\n}\n\n\n\n\n\n\nresult = frappe.db.sql(\"\"\"\n\n\n\nSELECT\n    lc.customer_name as customer,\n    SUM(lc.lc_amount) as lc_amount,\n    SUM(lc.total_commercial_invoices_amount) as comm_inv_amount,\n    IFNULL(SUM(DISTINCT pe.paid_amount), 0) as payment_entry_amount ,\n    (SUM(lc.lc_amount)) - ( (SUM(lc.total_commercial_invoices_amount)) + (IFNULL(SUM(DISTINCT pe.paid_amount), 0)) ) as balance\n\nFROM `tabLC Register` lc\nLEFT JOIN `tabPayment Entry` pe \n    ON pe.party = lc.customer_name AND pe.docstatus = 1\n\nWHERE lc.docstatus = 1\nAND (lc.customer_name = %(customer)s OR %(customer)s IS NULL)\n\nGROUP BY lc.customer_name\n\n\n\n\"\"\", values=values, as_dict=1)\n\n\n\n\n\ncolumns = [\n\n        {  'label':'Customer', 'fieldname':'customer', 'fieldtype':'Link', 'options':'Customer', 'width':'150%'   },\n        {  'label':'LC Amount', 'fieldname':'lc_amount', 'fieldtype':'Currency', 'width':'150%'   },\n        {  'label':'Total Invoice', 'fieldname':'comm_inv_amount', 'fieldtype':'Currency', 'width':'200%'   },\n        {  'label':'Settlement', 'fieldname':'payment_entry_amount', 'fieldtype':'Currency', 'width':'200%'   },\n        {  'label':'Available Balance', 'fieldname':'balance', 'fieldtype':'Currency', 'width':'200%'   },\n\n]\n\n\n\n\n\n\n\n\n\n\n\ndata = columns, result\n\n\n\n\n\n\n\n",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

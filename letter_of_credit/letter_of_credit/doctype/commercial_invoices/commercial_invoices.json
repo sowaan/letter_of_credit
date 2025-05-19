@@ -18,7 +18,8 @@
    "in_list_view": 1,
    "label": "Commercial Invoice Number",
    "link_filters": "[[\"Commercial Invoice\",\"docstatus\",\"=\",\"1\"]]",
-   "options": "Commercial Invoice"
+   "options": "Commercial Invoice",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_tjdn",
@@ -42,7 +43,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-05-14 16:37:12.895758",
+ "modified": "2025-05-19 12:57:26.957297",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "Commercial Invoices",
