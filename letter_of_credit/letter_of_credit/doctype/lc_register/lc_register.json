@@ -54,7 +54,13 @@
   "lc_amendment_details_section",
   "lc_amendment_details",
   "section_break_zag3",
-  "amended_from"
+  "amended_from",
+  "goods_or_services_tab",
+  "delivery_terms",
+  "column_break_kuif",
+  "payment_terms",
+  "section_break_johg",
+  "description_of_goods_or_services"
  ],
  "fields": [
   {
@@ -334,12 +340,40 @@
    "fieldtype": "Table",
    "label": "Purchase Invoices",
    "options": "Purchase Invoices"
+  },
+  {
+   "fieldname": "goods_or_services_tab",
+   "fieldtype": "Tab Break",
+   "label": "Goods or Services"
+  },
+  {
+   "fieldname": "delivery_terms",
+   "fieldtype": "Small Text",
+   "label": "Delivery Terms"
+  },
+  {
+   "fieldname": "column_break_kuif",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Small Text",
+   "label": "Payment Terms"
+  },
+  {
+   "fieldname": "section_break_johg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description_of_goods_or_services",
+   "fieldtype": "Long Text",
+   "label": "Description of Goods or Services"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-19 12:51:37.024347",
+ "modified": "2025-05-20 15:13:59.055453",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "LC Register",

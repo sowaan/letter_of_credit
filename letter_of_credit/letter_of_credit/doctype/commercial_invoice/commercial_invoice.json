@@ -15,10 +15,19 @@
   "column_break_eigc",
   "company",
   "default_currency",
+  "lc_register",
   "section_break_tszo",
   "currency_",
   "column_break_fois",
   "exchange_rate",
+  "section_break_ilir",
+  "sales_invoices",
+  "section_break_sxgt",
+  "si_net_total",
+  "column_break_sxwb",
+  "si_vat",
+  "column_break_rpcl",
+  "si_grand_total",
   "section_break_gjmy",
   "items",
   "section_break_saty",
@@ -111,6 +120,7 @@
    "fieldtype": "Table",
    "label": "Items",
    "options": "Commercial Invoice Item",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -288,22 +298,26 @@
    "label": "Delivery Date"
   },
   {
+   "fetch_from": "lc_register.lc_number",
    "fieldname": "lc_number",
    "fieldtype": "Data",
    "label": "LC Number"
   },
   {
+   "fetch_from": "lc_register.lc_date_of_issue",
    "fieldname": "date_of_issue",
    "fieldtype": "Date",
    "label": "Date of Issue"
   },
   {
    "default": "0",
+   "fetch_from": "lc_register.lc_amount",
    "fieldname": "lc_amount",
    "fieldtype": "Currency",
    "label": "LC Amount"
   },
   {
+   "fetch_from": "lc_register.lc_issuing_bank",
    "fieldname": "lc_issuing_bank",
    "fieldtype": "Link",
    "label": "LC Issuing Bank",
@@ -314,6 +328,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "fetch_from": "lc_register.delivery_terms",
    "fieldname": "delivery_terms",
    "fieldtype": "Small Text",
    "label": "Delivery Terms"
@@ -323,6 +338,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "lc_register.payment_terms",
    "fieldname": "payment_terms",
    "fieldtype": "Small Text",
    "label": "Payment Terms"
@@ -334,6 +350,7 @@
    "options": "Project"
   },
   {
+   "fetch_from": "lc_register.description_of_goods_or_services",
    "fieldname": "description_of_goods_or_services",
    "fieldtype": "Long Text",
    "label": "Description of Goods or Services"
@@ -358,12 +375,62 @@
   {
    "fieldname": "section_break_phwb",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lc_register",
+   "fieldtype": "Link",
+   "label": "LC Register",
+   "options": "LC Register"
+  },
+  {
+   "fieldname": "section_break_ilir",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_invoices",
+   "fieldtype": "Table",
+   "label": "Sales Invoices",
+   "options": "Sales Invoices",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_sxgt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_sxwb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_rpcl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "si_grand_total",
+   "fieldtype": "Currency",
+   "label": "SI Grand Total",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "si_net_total",
+   "fieldtype": "Currency",
+   "label": "SI Net Total",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "si_vat",
+   "fieldtype": "Currency",
+   "label": "SI VAT",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-14 11:51:15.171350",
+ "modified": "2025-05-20 16:47:20.796670",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "Commercial Invoice",
