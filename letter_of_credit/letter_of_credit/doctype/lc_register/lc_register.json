@@ -37,9 +37,20 @@
   "lc_date_ofexpiry",
   "commercial_invoices_section",
   "commercial_invoices",
+  "section_break_krmd",
+  "column_break_vldw",
+  "ci_net_total",
+  "column_break_hehg",
+  "ci_total_vat",
+  "column_break_ntpy",
   "total_commercial_invoices_amount",
   "purchase_invoices_section",
   "purchase_invoices",
+  "section_break_jyyz",
+  "pi_net_total",
+  "column_break_nymz",
+  "pi_total_vat",
+  "column_break_gyet",
   "total_purchase_invoice_amount",
   "section_break_gdtd",
   "description_of_goods_and_services",
@@ -191,6 +202,7 @@
    "label": "Commercial Invoices"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "commercial_invoices",
    "fieldtype": "Table",
    "label": "Commercial Invoices",
@@ -310,6 +322,7 @@
    "options": "Company"
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "total_commercial_invoices_amount",
    "fieldtype": "Currency",
@@ -323,6 +336,7 @@
    "unique": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "total_purchase_invoice_amount",
    "fieldtype": "Currency",
@@ -336,6 +350,7 @@
    "label": "Purchase Invoices"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "purchase_invoices",
    "fieldtype": "Table",
    "label": "Purchase Invoices",
@@ -368,12 +383,74 @@
    "fieldname": "description_of_goods_or_services",
    "fieldtype": "Long Text",
    "label": "Description of Goods or Services"
+  },
+  {
+   "depends_on": "eval: doc.lc_group == 'Export' ;",
+   "fieldname": "section_break_krmd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vldw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_hehg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "pi_total_vat",
+   "fieldtype": "Currency",
+   "label": "PI Total VAT",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ntpy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "pi_net_total",
+   "fieldtype": "Currency",
+   "label": "PI Net Total",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "ci_net_total",
+   "fieldtype": "Currency",
+   "label": "CI Net Total",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "ci_total_vat",
+   "fieldtype": "Currency",
+   "label": "CI Total VAT",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.lc_group == 'Import' ;",
+   "fieldname": "section_break_jyyz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_nymz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gyet",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-20 15:13:59.055453",
+ "modified": "2025-05-21 15:41:51.882104",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "LC Register",

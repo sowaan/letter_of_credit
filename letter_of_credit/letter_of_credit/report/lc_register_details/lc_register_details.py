@@ -23,7 +23,9 @@ def execute(filters=None):
 			lc.lc_amount as lc_amount,
 			lc.total_commercial_invoices_amount as total_commercial_invoices_amount,
 			IFNULL(SUM(pe.paid_amount), 0) as settlement,
-			(lc.lc_amount - lc.total_commercial_invoices_amount - IFNULL(SUM(pe.paid_amount), 0)) as available_balance
+			(lc.lc_amount - lc.total_commercial_invoices_amount - IFNULL(SUM(pe.paid_amount), 0)) as available_balance ,
+			lc.description_of_goods_or_services as description			
+					
 		FROM `tabLC Register` lc
 		LEFT JOIN `tabPayment Entry` pe 
 			ON pe.lc_register = lc.name 
@@ -61,6 +63,7 @@ def execute(filters=None):
 		{ 'label':'Date of Issue', 'fieldname':'lc_date_of_issue', 'fieldtype':'Date', 'width':120 },
 		{ 'label':'Date of Expiry', 'fieldname':'lc_date_ofexpiry', 'fieldtype':'Date', 'width':120 },
 		{ 'label':'LC Amount', 'fieldname':'lc_amount', 'fieldtype':'Currency', 'width':120 },
+
 	]
 
 	for i in range(max_amendments):
@@ -80,5 +83,9 @@ def execute(filters=None):
 	columns.append(
 			{ 'label':'Available Balance', 'fieldname':'available_balance', 'fieldtype':'Currency', 'width':150 },
 	)    
+	columns.append(
+			{  'label':'Description', 'fieldname':'description', 'fieldtype':'Data', 'width':'300%'   },
+	)  
+	
 
 	return columns, result

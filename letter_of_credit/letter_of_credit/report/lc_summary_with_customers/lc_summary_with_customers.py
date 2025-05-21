@@ -17,7 +17,8 @@ def execute(filters=None):
 			SUM(lc.lc_amount) as lc_amount,
 			SUM(lc.total_commercial_invoices_amount) as comm_inv_amount,
 			IFNULL(SUM(DISTINCT pe.paid_amount), 0) as payment_entry_amount ,
-			(SUM(lc.lc_amount)) - ( (SUM(lc.total_commercial_invoices_amount)) + (IFNULL(SUM(DISTINCT pe.paid_amount), 0)) ) as balance
+			(SUM(lc.lc_amount)) - ( (SUM(lc.total_commercial_invoices_amount)) + (IFNULL(SUM(DISTINCT pe.paid_amount), 0)) ) as balance ,
+			lc.description_of_goods_or_services as description
 
 		FROM `tabLC Register` lc
 		LEFT JOIN `tabPayment Entry` pe 
@@ -38,6 +39,7 @@ def execute(filters=None):
 			{  'label':'Total Invoice', 'fieldname':'comm_inv_amount', 'fieldtype':'Currency', 'width':'200%'   },
 			{  'label':'Settlement', 'fieldname':'payment_entry_amount', 'fieldtype':'Currency', 'width':'200%'   },
 			{  'label':'Available Balance', 'fieldname':'balance', 'fieldtype':'Currency', 'width':'200%'   },
+			{  'label':'Description', 'fieldname':'description', 'fieldtype':'Data', 'width':'300%'   },
 
 	]
 
