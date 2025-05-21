@@ -362,6 +362,7 @@
    "label": "Goods or Services"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "delivery_terms",
    "fieldtype": "Small Text",
    "label": "Delivery Terms"
@@ -371,6 +372,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "payment_terms",
    "fieldtype": "Small Text",
    "label": "Payment Terms"
@@ -380,6 +382,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "description_of_goods_or_services",
    "fieldtype": "Long Text",
    "label": "Description of Goods or Services"
@@ -450,7 +453,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-21 15:41:51.882104",
+ "modified": "2025-05-21 17:27:17.523445",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "LC Register",
