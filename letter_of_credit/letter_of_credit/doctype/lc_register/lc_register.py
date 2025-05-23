@@ -9,9 +9,12 @@ class LCRegister(Document):
 	# pass
     def before_save(self) :
         self.caluculate_totals_of_sales_or_purchase_invoices()
+        self.calculate_lc_amount()
 
     def on_update_after_submit(self) :
         self.caluculate_totals_of_sales_or_purchase_invoices()
+        
+
         
 
     def caluculate_totals_of_sales_or_purchase_invoices(self) :
@@ -41,5 +44,8 @@ class LCRegister(Document):
             self.pi_net_total = net_total
             self.pi_total_vat = vat
             self.total_purchase_invoice_amount = grand_total
+
+    def calculate_lc_amount(self) :
+        self.lc_amount_in_aed = self.lc_amount * self.exchange_rate
 
 

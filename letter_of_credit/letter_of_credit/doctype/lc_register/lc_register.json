@@ -13,6 +13,7 @@
   "lc_type",
   "buyer__applicant_section",
   "customer_name",
+  "customer_name1",
   "address",
   "country",
   "column_break_dqxy",
@@ -21,6 +22,7 @@
   "po_box",
   "supplier_details_section",
   "supplier",
+  "supplier_name",
   "supplier_address",
   "supplier_country",
   "column_break_kxni",
@@ -29,9 +31,11 @@
   "supplier_po_box",
   "lc_details_section",
   "lc_amount",
-  "lc_issuing_bank",
-  "bank_lc_no",
+  "currency",
+  "exchange_rate",
+  "lc_amount_in_aed",
   "column_break_faxb",
+  "lc_issuing_bank",
   "lc_reference",
   "lc_date_of_issue",
   "lc_date_ofexpiry",
@@ -116,11 +120,12 @@
    "depends_on": "eval: doc.lc_group == 'Export' ;",
    "fieldname": "customer_name",
    "fieldtype": "Link",
-   "label": "Customer Name",
+   "label": "Customer",
    "options": "Customer"
   },
   {
    "depends_on": "eval: doc.lc_group == 'Export' ;",
+   "fetch_from": "customer_name.primary_address",
    "fieldname": "address",
    "fieldtype": "Link",
    "label": "Address",
@@ -162,7 +167,10 @@
    "default": "0",
    "fieldname": "lc_amount",
    "fieldtype": "Float",
-   "label": "LC Amount"
+   "in_list_view": 1,
+   "label": "LC Amount In Foreign Currency",
+   "non_negative": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_faxb",
@@ -172,28 +180,28 @@
    "fieldname": "lc_issuing_bank",
    "fieldtype": "Link",
    "label": "LC Issuing Bank",
-   "options": "Bank"
-  },
-  {
-   "fieldname": "bank_lc_no",
-   "fieldtype": "Data",
-   "label": "Bank LC No"
+   "options": "Bank",
+   "reqd": 1
   },
   {
    "fieldname": "lc_reference",
    "fieldtype": "Data",
-   "label": "LC Reference",
+   "label": "Bank LC Number ",
+   "reqd": 1,
    "unique": 1
   },
   {
    "fieldname": "lc_date_of_issue",
    "fieldtype": "Date",
-   "label": "LC Date Of Issue"
+   "label": "LC Date Of Issue",
+   "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "lc_date_ofexpiry",
    "fieldtype": "Date",
-   "label": "LC Date Of Expiry"
+   "label": "LC Date Of Expiry",
+   "reqd": 1
   },
   {
    "depends_on": "eval: doc.lc_group == 'Export' ;",
@@ -202,6 +210,7 @@
    "label": "Commercial Invoices"
   },
   {
+   "allow_bulk_edit": 1,
    "allow_on_submit": 1,
    "fieldname": "commercial_invoices",
    "fieldtype": "Table",
@@ -237,6 +246,8 @@
    "label": "PI Invoice Date"
   },
   {
+   "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
    "fieldname": "delivery_details",
    "fieldtype": "Table",
    "label": "Delivery Details",
@@ -253,6 +264,8 @@
    "label": "Terms and Conditions for Material Delivery"
   },
   {
+   "allow_bulk_edit": 1,
+   "allow_on_submit": 1,
    "fieldname": "lc_amendment_details",
    "fieldtype": "Table",
    "label": "LC Amendment Details",
@@ -287,6 +300,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "supplier.supplier_primary_address",
    "fieldname": "supplier_address",
    "fieldtype": "Link",
    "label": "Address",
@@ -350,6 +364,7 @@
    "label": "Purchase Invoices"
   },
   {
+   "allow_bulk_edit": 1,
    "allow_on_submit": 1,
    "fieldname": "purchase_invoices",
    "fieldtype": "Table",
@@ -448,12 +463,49 @@
   {
    "fieldname": "column_break_gyet",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer_name.customer_name",
+   "fieldname": "customer_name1",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "supplier.supplier_name",
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "lc_amount_in_aed",
+   "fieldtype": "Currency",
+   "label": "LC Amount In Company Currency",
+   "non_negative": 1,
+   "options": "currency",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-21 17:27:17.523445",
+ "modified": "2025-05-23 15:43:19.675588",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "LC Register",

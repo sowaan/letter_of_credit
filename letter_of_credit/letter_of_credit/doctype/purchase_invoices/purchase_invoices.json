@@ -8,6 +8,9 @@
  "field_order": [
   "purchase_invoice_number",
   "purchase_invoice_date",
+  "commercial_invoice_number",
+  "commercial_invoice_date",
+  "due_date",
   "column_break_tjdn",
   "total",
   "vat",
@@ -56,12 +59,31 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "VAT"
+  },
+  {
+   "fieldname": "commercial_invoice_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Commercial Invoice Number"
+  },
+  {
+   "fieldname": "commercial_invoice_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Commercial Invoice Date"
+  },
+  {
+   "fetch_from": "purchase_invoice_number.due_date",
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Due Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-05-21 15:34:30.708422",
+ "modified": "2025-05-23 15:40:31.193043",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "Purchase Invoices",
