@@ -34,11 +34,13 @@
   "currency",
   "exchange_rate",
   "lc_amount_in_aed",
+  "tolerence",
   "column_break_faxb",
   "lc_issuing_bank",
   "lc_reference",
   "lc_date_of_issue",
   "lc_date_ofexpiry",
+  "lc_amount_after_tolerance",
   "commercial_invoices_section",
   "commercial_invoices",
   "section_break_krmd",
@@ -186,8 +188,7 @@
   {
    "fieldname": "lc_reference",
    "fieldtype": "Data",
-   "label": "Bank LC Number ",
-   "reqd": 1,
+   "label": "Bank LC Reference",
    "unique": 1
   },
   {
@@ -500,12 +501,26 @@
    "non_negative": 1,
    "options": "currency",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "tolerence",
+   "fieldtype": "Percent",
+   "label": "Tolerence %",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "lc_amount_after_tolerance",
+   "fieldtype": "Currency",
+   "label": "LC Amount After Tolerance",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-05-23 15:43:19.675588",
+ "modified": "2025-05-27 11:05:00.679898",
  "modified_by": "Administrator",
  "module": "Letter of Credit",
  "name": "LC Register",
